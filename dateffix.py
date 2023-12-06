@@ -1,6 +1,74 @@
 
 from datetime import datetime
 
+"""""""""""""""
+FUNCTIONS:
+    1. datefixx
+    2. generate_custom_format(format_str, the_day, the_month, the_year)
+    3. validate_date(date_str)
+
+I. datefixx
+        EXPLANATION
+            dateffix adds the proper suffix(es) to the day(s) in a list of date / datetime strings or to a single date / datetime string
+
+        BEHAVIOR
+            1. Accepts single date and/or datetime string or list thereof
+            2. With no arguments, it will return MonthName DD(suffix), YYYY
+
+        KWARG CHOICES: formatted=OPTION, suffixed_only=BOOLEAN, no_times=BOOLEAN
+
+            1. dateffix(date_list, formatted="YMD")
+            - Format options:
+                - `MDY`
+                - `MD,Y`
+                - `DMY`
+                - `DM,Y`
+                - `D,MY`
+                - `YDM`
+                - `Y,DM`
+                - `YD,M`
+                - `YMD`
+                - `Y,MD`
+                - `YM,D`
+
+            2. dateffix(date_list, suffixed_only=True)
+                Return only the day portion(s) with the proper suffix(es) appeneded
+
+            3. dateffix(date_list, no_times=True)
+                Return the properly suffixed date(s) without timestamps
+
+        RETURNS:
+            type: string or list of strings
+            Single or list of string date / datetimes with proper suffixes for the day portion
+
+II. generate_custom_format
+        EXPLANATION:
+            Re-organizes the returned date format according to custom input
+
+        POSITIONAL ARGUMENTS:
+            format_str: e.g. "YMD"
+            the_day: Day portion of date
+            the_month: Month portion of date
+            the_year: Year portion of date
+
+        RETURNS:
+            type: string
+            Re-formatted date / datetime string
+
+III. validate_date
+        EXPLANATION:
+            Ensures we have a valid date and checks if it has a timestamp
+
+        POSITIONAL ARGUMENT:
+            date_str: the date / datetime string
+
+        RETURNS:
+            type: datetime object / string
+            Returns datetime object or datetime, timestamp string if it has a timestamp
+
+"""""""""""""""
+
+# Used to get the month names 
 MONTHS = {
     "01":"January", "02":"February", "03":"March", "04":"April", 
     "05":"May", "06":"June", "07":"July", "08":"August", "09":"September",
@@ -8,7 +76,7 @@ MONTHS = {
 }
 
 # Return formatted dates
-def dateffix(date_list, formatted=None, suffixed_only=False, no_times=False):
+def dateffix(date_list, **kwargs):
     if not isinstance(date_list, list):
         date_list = [date_list]
 
@@ -36,19 +104,20 @@ def dateffix(date_list, formatted=None, suffixed_only=False, no_times=False):
     # add the suffix to the day
         the_day += suffix
 
-        if formatted and not suffixed_only:
-            the_formatted_date = generate_custom_format(formatted, the_day, the_month, the_year)
-        elif suffixed_only:
+        if "formatted" in kwargs and "suffixed_only" not in kwargs:
+            the_formatted_date = generate_custom_format(kwargs["formatted"], the_day, the_month, the_year)
+        elif "suffixed_only" in kwargs:
             the_formatted_date = the_day
         else:
             the_formatted_date = f"{the_month} {the_day}, {the_year}"
 
-        if not no_times and has_time and not suffixed_only:
+        if not "no_times" in kwargs and has_time and not "suffixed_only" in kwargs:
             time_portion = date_obj.strftime("%H" + has_time)
             the_formatted_date += " " + time_portion
 
         formatted_dates.append(the_formatted_date)
-    return formatted_dates
+
+    return formatted_dates if len(formatted_dates) > 1 else formatted_dates[0]
 
 # Generate custom format for returned strings
 def generate_custom_format(format_str, the_day, the_month, the_year):
@@ -115,6 +184,7 @@ def validate_date(date_str):
 ######
 
 if __name__ == "__main__":
+    print("\n\ndateffix EXAMPLE OUTPUT start:\n\n")
 
 ### LIST OF DATES 
     date_list = ["2023-12-07", "2023/08/30", "2023/7/3", "20231221", "01/25/1809", "02-21-2023", "30-Aug-2023", "Sep 23, 2023", "April 20, 2023", "21 May 2020", "Fri, 22 December 2023", "2023-10-07 15:30:10", "Sat, 9 Dec 2023 15:30:10 +0000", "1909-11-12T15:30:15.123456Z"]
@@ -149,7 +219,7 @@ if __name__ == "__main__":
 
 
 ### CUSTOM FORMAT
-    custom_formatted_dates = dateffix(date_list, "YMD")
+    custom_formatted_dates = dateffix(date_list, formatted="YMD")
     # Format options:
         # MDY
         # MD,Y
@@ -231,3 +301,10 @@ if __name__ == "__main__":
         # October 7th, 2023
         # December 9th, 2023
         # November 12th, 1909
+
+### SINGLE DATE
+    print("\nSingle Date")
+    x = dateffix("02-02-2022")
+    print(x)
+
+    print("\n\ndateffix EXAMPLE OUTPUT end:\n\n")
