@@ -212,8 +212,7 @@ if __name__ == "__main__":
     date_list = ["2023-12-07", "2023/08/30", "2023/7/3", "20231221", "01/25/1809", "02-21-2023", "02-09-2023 04:32:10 AM", "30-Aug-2023", "Sep 23, 2023", "April 20, 2023", "21 May 2020", "Fri, 22 December 2023", "2023-10-07 15:30:10", "Sat, 9 Dec 2023 15:30:10 +0000", "1909-11-12T15:30:15.123456"]
     print(f"{YELLOW}Original Dates:{RESET}", date_list, "\n")
     # output:
-    #     Original Dates: ['2023-12-07', '2023/08/30', '2023/7/3', '20231221', '01/25/1809', '02-21-2023', '30-Aug-2023', 'Sep 23, 2023', 'April 20, 2023', '21 May 2020', 'Fri, 22 December 2023', '2023-10-07 15:30:10', 'Sat, 9 Dec 2023 15:30:10 +0000', '1909-11-12T15:30:15.123456Z'] 
-
+        # Original Dates: ['2023-12-07', '2023/08/30', '2023/7/3', '20231221', '01/25/1809', '02-21-2023', '02-09-2023 04:32:10 AM', '30-Aug-2023', 'Sep 23, 2023', 'April 20, 2023', '21 May 2020', 'Fri, 22 December 2023', '2023-10-07 15:30:10', 'Sat, 9 Dec 2023 15:30:10 +0000', '1909-11-12T15:30:15.123456'] 
 
 ### GET THE DATES WITH PROPER SUFFIXES
     formatted_dates = dateffix(date_list)
@@ -223,20 +222,21 @@ if __name__ == "__main__":
         print(formatted_date)
         # output:
             # Standard formatted dates:
-            # December 7th, 2023
-            # August 30th, 2023
-            # July 3rd, 2023
-            # December 21st, 2023
-            # January 25th, 1809
-            # February 21st, 2023
-            # August 30th, 2023
-            # September 23rd, 2023
-            # April 20th, 2023
-            # May 21st, 2020
-            # December 22nd, 2023
-            # October 7th, 2023 15:30:10
-            # December 9th, 2023 15:30:10 +0000
-            # November 12th, 1909 15:30:15.123456Z
+                # December 7th, 2023
+                # August 30th, 2023
+                # July 3rd, 2023
+                # December 21st, 2023
+                # January 25th, 1809
+                # February 21st, 2023
+                # February 9th, 2023 04:32:10 AM
+                # August 30th, 2023
+                # September 23rd, 2023
+                # April 20th, 2023
+                # May 21st, 2020
+                # December 22nd, 2023
+                # October 7th, 2023 15:30:10
+                # December 9th, 2023 15:30:10 +0000
+                # November 12th, 1909 15:30:15.123456
 
 
 
@@ -260,21 +260,22 @@ if __name__ == "__main__":
         print(formatted_date)
 
         # output:
-            # Custom formatted dates example (YMD): 
-            # 2023 December 7th
-            # 2023 August 30th
-            # 2023 July 3rd
-            # 2023 December 21st
-            # 1809 January 25th
-            # 2023 February 21st
-            # 2023 August 30th
-            # 2023 September 23rd
-            # 2023 April 20th
-            # 2020 May 21st
-            # 2023 December 22nd
-            # 2023 October 7th 15:30:10
-            # 2023 December 9th 15:30:10 +0000
-            # 1909 November 12th 15:30:15.123456Z
+            # Custom formatted dates example (YMD):
+                # 2023 December 7th
+                # 2023 August 30th
+                # 2023 July 3rd
+                # 2023 December 21st
+                # 1809 January 25th
+                # 2023 February 21st
+                # 2023 February 9th 04:32:10 AM
+                # 2023 August 30th
+                # 2023 September 23rd
+                # 2023 April 20th
+                # 2020 May 21st
+                # 2023 December 22nd
+                # 2023 October 7th 15:30:10
+                # 2023 December 9th 15:30:10 +0000
+                # 1909 November 12th 15:30:15.123456
 
 ### SUFFIXES ONLY
     suffix_only_from_dates = dateffix(date_list, suffixed_only=True)
@@ -285,20 +286,21 @@ if __name__ == "__main__":
 
         # output:
             # Suffixes only example: 
-            # 7th
-            # 30th
-            # 3rd
-            # 21st
-            # 25th
-            # 21st
-            # 30th
-            # 23rd
-            # 20th
-            # 21st
-            # 22nd
-            # 7th
-            # 9th
-            # 12th
+                # 7th
+                # 30th
+                # 3rd
+                # 21st
+                # 25th
+                # 21st
+                # 9th
+                # 30th
+                # 23rd
+                # 20th
+                # 21st
+                # 22nd
+                # 7th
+                # 9th
+                # 12th
 
 ### NO TIMES
     no_time_formatted_dates = dateffix(date_list, no_times=True)
@@ -309,37 +311,48 @@ if __name__ == "__main__":
 
     # output: 
         # Dates returned without timestamps:
-        # December 7th, 2023
-        # August 30th, 2023
-        # July 3rd, 2023
-        # December 21st, 2023
-        # January 25th, 1809
-        # February 21st, 2023
-        # August 30th, 2023
-        # September 23rd, 2023
-        # April 20th, 2023
-        # May 21st, 2020
-        # December 22nd, 2023
-        # October 7th, 2023
-        # December 9th, 2023
-        # November 12th, 1909
+            # December 7th, 2023
+            # August 30th, 2023
+            # July 3rd, 2023
+            # December 21st, 2023
+            # January 25th, 1809
+            # February 21st, 2023
+            # February 9th, 2023
+            # August 30th, 2023
+            # September 23rd, 2023
+            # April 20th, 2023
+            # May 21st, 2020
+            # December 22nd, 2023
+            # October 7th, 2023
+            # December 9th, 2023
+            # November 12th, 1909
 
 ### SINGLE DATE
     print(f"\n{YELLOW}Single Date{RESET}")
     sd = dateffix("02-02-2022")
     print(sd)
 
+    # output:
+        # Single Date
+            # February 2nd, 2022
+            # 2023-09-23 12:30:45+05:00
+
 ### DATETIME OBJECT
     TIMEZONE = timezone(timedelta(hours=5))
     datetime_3 = datetime(2023, 9, 23, 12, 30, 45, tzinfo=TIMEZONE)
-    print(datetime_3)
 
     dt = [datetime(2023, 10, 31, 12, 30, 45),datetime(2023, 2, 10, 12, 20, 45, 123456), datetime_3]
     results = dateffix(dt, formatted="D,MY")
-    print(f"\n{YELLOW}Formatted results from datetime objects:{RESET}")
 
+    print(f"\n{YELLOW}Formatted results from datetime objects:{RESET}")
     for result in results:
         print(result)
+
+    # output:
+    #     Formatted results from datetime objects:
+        #     31st, October 2023 12:30:45
+        #     10th, February 2023 12:20:45.123456
+        #     23rd, September 2023 12:30:45+0500
 
     print(f"\n\n{CYAN}dateffix EXAMPLE OUTPUT end:\n\n{RESET}")
 
