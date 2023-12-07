@@ -32,7 +32,7 @@
         - `YM,D`
     
 2. **Suffix only:**
-    - Return only the day portion(s) with the proper suffix(es) appeneded
+    - Return only the day portion(s) with the proper suffix(es) appended
     ```python
         dateffix(date_list, suffixed_only=True)
     ```
