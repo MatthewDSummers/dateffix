@@ -100,8 +100,8 @@ def dateffix(date_list, **kwargs):
         # get just the YEAR portion
             the_year = date_obj.strftime("%Y")
 
-        # Suffix is "th" if the DAY portion is 4 to 20, otherwise the modulus 10 will get just the number (in case of single digits) or the 2nd digit of the number (in case of double digit days),
-        # then use it as the key to retrieve the desired suffix value from the created dictionary.
+        # Suffix is "th" if the DAY portion is 4 to 20, otherwise the DAY % 10 will get just the number (in case of single digits) or the 2nd digit of the number (in case of double digit days),
+        # and then use it as the key to retrieve the desired suffix value from the dictionary.
         # If the digit (key) is not present in the dict, it will use the default suffix "th".
             suffix = "th" if int(the_day) >= 4 and int(the_day) <= 20 else {1: "st", 2: "nd", 3: "rd"}.get((int(the_day) % 10), "th")
 
